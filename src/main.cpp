@@ -1,8 +1,19 @@
-#include <iostream>
+#include "SDL.hpp"
+//#include "Window.hpp"
 
-int main( int argc, char* args[] )
+#include <exception>
+
+int main()
 {
-	std::cout << "ok" << std::endl;
+	try
+	{
+        SDL::init();
+	}
+	catch (...)
+	{
+		return -1;
+	}
+	SDL::exit();
 	return 0;
 }
 
