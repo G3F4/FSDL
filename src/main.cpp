@@ -1,5 +1,5 @@
 #include "SDL.hpp"
-//#include "Window.hpp"
+//#include "Application.hpp"
 
 #include <exception>
 

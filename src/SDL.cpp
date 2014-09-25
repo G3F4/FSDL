@@ -1,22 +1,18 @@
 #include "SDL.hpp"
-#include "Window.hpp"
+#include "Application.hpp"
+#include "Texture.hpp"
 #include <iostream>
 
 bool SDL::init()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	std::cout << "SDL was initialized" << std::endl;
-	Window* window = new Window("test window");
-	int w = 0;
-	int h = 0;
-	while(w < 100){
-        w++;
-        h++;
-        window->set_x_position(w);
-        window->set_y_position(h);
-        SDL_Delay(10);
-	}
+	SDL_RenderClear(Application::Instance()->get_render());
+	Texture* tex = new Texture(Application::Instance()->get_render());
+	tex->render();
+	std::cout << tex->get_width() << " x " << tex->get_heigth() << std::endl;
 
+	SDL_Delay(2000);
 	return true;
 }
 void SDL::exit()

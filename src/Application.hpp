@@ -1,21 +1,21 @@
-#ifndef WINDOW_H_DEFINED
-#define WINDOW_H_DEFINED
+#ifndef APPLICATION_H_DEFINED
+#define APPLICATION_H_DEFINED
 
 #include <string>
 #include "SDL.hpp"
 
-const int h = 400;
-const int w = 400;
 
-class Window
+class Application
 {
-public:                                         // defaults:
-	Window(std::string title = "SDL App",       // window title
+public:              
+    static Application* Instance(void);              // Instance method used to acces the class
+                                                // defaults:
+	Application(std::string title = "SDL App",       // window title
             Uint32 x_position = 0,              // x position of left upper corner of the window
-            Uint32 y_position = 0,              // y position of left upper corner of the window
+            Uint32 y_position = 1000,              // y position of left upper corner of the window
             Uint32 width = 640,                 // width of the window
             Uint32 heigth = 480,                // heigth of the window
-            Uint32 flags = SDL_WINDOW_SHOWN);   // SDL_WindowFlags, default window is simply shown
+            Uint32 flags = SDL_WINDOW_SHOWN);   // SDL_ApplicationFlags, default window is simply shown
                                                 // some others options: ( can be or'ed with || )
                                                 // SDL_WINDOW_FULLSCREEN - full screen window
                                                 // SDL_WINDOW_FULLSCREEN_DESKTOP - fullscreen window at the current desktop resolution
@@ -27,7 +27,7 @@ public:                                         // defaults:
                                                 // SDL_WINDOW_INPUT_GRABBED - window has grabbed input foucs
                                                 // SDL_WINDOW_INPUT_FOCUS - window has input focus
                                                 // SDL_WINDOW_MOUSE_FOCUS - window has mouse focus
-    void destroy(void);                         // destroy SDL_Window and set window pointer to nullptr
+    void destroy(void);                         // destroy SDL_Application and set window pointer to nullptr
 
     void set_width(int w);                      // set width of the window
     void set_heigth(int h);                     // set heigth of the window
@@ -40,22 +40,39 @@ public:                                         // defaults:
     void set_window_position(int x, int y);     // set window position
     int get_x_position(void);                   // get window x position
     int get_y_position(void);                   // get window y position
-    SDL_Rect window_box;
-
-private:
+    void set_title(std::string title);          // set the title of the window
+    std::string get_title(void);                // get the title of the window
+    void hide(void);                            // hide window
+    void show(void);                            // show window
+    bool set_brightness(float brightness);      // set the brightness of the window
+    float get_brightness(void);                 // get level of the brightness of the window
+    ~Application(void);                              // destructor
+    SDL_Renderer* get_render(void){ return render;}
+//private:
     void update_window_position(void);          // update position of the window when changed
     void update_window_size(void);              // update size of the window when changed
-
-    SDL_Window* window;                         // SDL_Window pointer to window structure
+    void create_render(                         // create a render for this window
+        Uint32 flags = SDL_RENDERER_ACCELERATED,
+        int index = -1);
+    void set_render_color(
+        int R = 0,
+        int G = 0,
+        int B = 0,
+        int alpha = 100);
+    SDL_Renderer* render;                        // Application Renderer
+    SDL_Window* window;                         // SDL_Application pointer to window structure
     std::string title;                          // literal representing window title
     Uint32 x_position;                          // variable to store x position of the window
     Uint32 y_position;                          // variable to store y position of the window
     Uint32 width;                               // variable to store width of the window
     Uint32 heigth;                              // variable to store heigth of the wondow
-    Uint32 flags;                               // variable to store SDL_WindowFlags
-
-//    SDL_Rect window_box;                        // SDL_Rect structure holding window dimensions and position
+    Uint32 flags;                               // variable to store SDL_ApplicationFlags
+    Uint32 render_flags;                        // variable to store SDL_RendererFlags
+    SDL_Rect window_box;                        // SDL_Rect structure holding window dimensions and position
+    static Application* instance;                    // pointer to instance, access point
+    static bool instance_flag;                  // instance flag
+    SDL_RendererInfo* render_info;
 };
 
-#endif //WINDOW_H_DEFINED
+#endif //APPLICATION_H_DEFINED
 
