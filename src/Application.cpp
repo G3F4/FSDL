@@ -14,6 +14,13 @@ Application* Application::Instance(void){
         return instance;
     }
 }
+void Application::pause(Uint32 ms) {
+    SDL_Delay(ms);
+}
+
+void Application::start(void){
+    Application();
+}
 
 Application::~Application(void){
     render = 0;
@@ -43,6 +50,8 @@ Application::Application(std::string title, Uint32 x_position, Uint32 y_position
                                 flags);
     create_render();
     this->set_render_color(123,123,123);
+    SDL_RenderClear(render);
+    SDL_RenderPresent(render);
     std::cout << "Window was created!" << std::endl;
 }
 
@@ -120,4 +129,8 @@ void Application::set_render_color(int R, int G, int B, int alpha){
 void Application::destroy(void){
     SDL_DestroyWindow(this->window);
     this->window = nullptr;
+}
+
+void Application::refresh(void) {
+    SDL_RenderPresent(render);
 }

@@ -19,15 +19,17 @@
 
 class Texture{
 public:
-	Texture(SDL_Renderer* render);
+	Texture(void);
 	void render(void);
-	void load(std::string file, SDL_Renderer* render);
+	void load(std::string id, std::string file);
 	int get_width(void) { return texture_box.w; }
 	int get_heigth(void) { return texture_box.h; }
+	std::string get_id(void) { return id; }
 private:
 	SDL_Texture* texture;
 	SDL_Rect texture_box;
-	std::string file_path;
+	std::string file;
+	std::string id;
 };
 
 #endif /* TEXTURE_H_DEFINED */

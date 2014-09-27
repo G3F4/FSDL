@@ -2,7 +2,7 @@
 #define APPLICATION_H_DEFINED
 
 #include <string>
-#include "SDL.hpp"
+#include "MyApp.hpp"
 
 
 class Application
@@ -48,6 +48,9 @@ public:
     float get_brightness(void);                 // get level of the brightness of the window
     ~Application(void);                              // destructor
     SDL_Renderer* get_render(void){ return render;}
+    void start(void);
+    void pause(Uint32 ms);                      // delay application for given amount of miliseconds
+    void refresh(void);
 //private:
     void update_window_position(void);          // update position of the window when changed
     void update_window_size(void);              // update size of the window when changed

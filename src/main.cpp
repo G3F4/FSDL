@@ -1,19 +1,11 @@
-#include "SDL.hpp"
+#include "MyApp.hpp"
 //#include "Application.hpp"
 
 #include <exception>
 
 int main()
 {
-	try
-	{
-        SDL::init();
-	}
-	catch (...)
-	{
-		return -1;
-	}
-	SDL::exit();
-	return 0;
+    MyApp::start();
+	MyApp::exit();
 }
 

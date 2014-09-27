@@ -1,5 +1,5 @@
-#ifndef SDL_H_DEFINED
-#define SDL_H_DEFINED
+#ifndef MYAPP_DEFINED
+#define MYAPP_DEFINED
 
 #include <SDL2/SDL.h>            // SDL2
 #include <SDL2/SDL_video.h>      // SDL2
@@ -12,13 +12,13 @@
 // Shuts up the compiler about unused parameters.
 #define UNUSED(x) ((void)(x))
 
-namespace SDL
+namespace MyApp
 {
 	/// Starts SDL2, MUST be called before everything else.
-	bool init();
+	void start();
 
 	/// Destroys SDL2, MUST be called when program ends.
 	void exit();
 };
 
-#endif /* SDL_H_DEFINED */
+#endif /* MYAPP_DEFINED */
