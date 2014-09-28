@@ -1,20 +1,30 @@
 #include "MyApp.hpp"
-#include "Application.hpp"
-#include "TextureStash.hpp"
-#include <iostream>
+#include "API.hpp"
 
 void MyApp::start()
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	std::cout << "SDL was initialized" << std::endl;
-	TextureStash::Instance()->add("ele", "ele.png");
-	TextureStash::Instance()->add("no-img", "no-img.png");
-	TextureStash::Instance()->render_all();
-	Application::Instance()->refresh();
-	Application::Instance()->pause(2000);
+	App->start();
+	TextureStash->add("ele", "ele.png");
+	while(App->is_running()) {
+		App->refresh();
+		Events->handle();
+		if(Events->key_pressed(KEY::LEFT)) {
+			std::cout << "left pressed" << std::endl;
+		}
+		if(Events->key_pressed(KEY::UP)) {
+			std::cout << "up pressed" << std::endl;
+		}
+		if(Events->key_pressed(KEY::DOWN)) {
+			std::cout << "down pressed" << std::endl;
+		}
+		if(Events->key_pressed(KEY::RIGHT)) {
+			std::cout << "right pressed" << std::endl;
+		}
+		App->render();
+	}
 }
 void MyApp::exit()
 {
-	SDL_Quit();
+	App->stop();
 }
 

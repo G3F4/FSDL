@@ -6,6 +6,8 @@
 #include <iostream>
 #include <map>
 
+class Texture;
+
 class TextureStash {
 public:
 	static TextureStash* Instance(void);

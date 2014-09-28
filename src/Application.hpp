@@ -3,6 +3,8 @@
 
 #include <string>
 #include "MyApp.hpp"
+#include "Events.hpp"
+#include "TextureStash.hpp"
 
 
 class Application
@@ -47,11 +49,15 @@ public:
     bool set_brightness(float brightness);      // set the brightness of the window
     float get_brightness(void);                 // get level of the brightness of the window
     ~Application(void);                              // destructor
-    SDL_Renderer* get_render(void){ return render;}
+    SDL_Renderer* get_render(void){ return m_render;}
     void start(void);
+    void stop(void);
     void pause(Uint32 ms);                      // delay application for given amount of miliseconds
     void refresh(void);
-//private:
+    void render(void);                          //render all visible textures
+    bool is_running(void) { return m_running; }
+private:
+
     void update_window_position(void);          // update position of the window when changed
     void update_window_size(void);              // update size of the window when changed
     void create_render(                         // create a render for this window
@@ -62,19 +68,19 @@ public:
         int G = 0,
         int B = 0,
         int alpha = 100);
-    SDL_Renderer* render;                        // Application Renderer
-    SDL_Window* window;                         // SDL_Application pointer to window structure
-    std::string title;                          // literal representing window title
-    Uint32 x_position;                          // variable to store x position of the window
-    Uint32 y_position;                          // variable to store y position of the window
-    Uint32 width;                               // variable to store width of the window
-    Uint32 heigth;                              // variable to store heigth of the wondow
-    Uint32 flags;                               // variable to store SDL_ApplicationFlags
-    Uint32 render_flags;                        // variable to store SDL_RendererFlags
-    SDL_Rect window_box;                        // SDL_Rect structure holding window dimensions and position
+    bool m_running;
+    SDL_Renderer* m_render;                        // Application Renderer
+    SDL_Window* m_window;                         // SDL_Application pointer to window structure
+    std::string m_title;                          // literal representing window title
+    Uint32 m_x_position;                          // variable to store x position of the window
+    Uint32 m_y_position;                          // variable to store y position of the window
+    Uint32 m_width;                               // variable to store width of the window
+    Uint32 m_heigth;                              // variable to store heigth of the wondow
+    Uint32 m_flags;                               // variable to store SDL_ApplicationFlags
+    Uint32 m_render_flags;                        // variable to store SDL_RendererFlags
+    SDL_Rect m_window_box;                        // SDL_Rect structure holding window dimensions and position
     static Application* instance;                    // pointer to instance, access point
     static bool instance_flag;                  // instance flag
-    SDL_RendererInfo* render_info;
 };
 
 #endif //APPLICATION_H_DEFINED

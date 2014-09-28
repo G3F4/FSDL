@@ -2,29 +2,35 @@
 #include <iostream>
 
 Texture::Texture(void){
-	file = "assets/images/no-img.png";
-	id = "no-img";
-	load(file,id);
+	m_texture = nullptr;
+	m_file = "assets/images/no-img.png";
+	m_id = "no-img";
 }
 
-void Texture::load(std::string id, std::string file){
-	std::string file_path = "assets/images/" + file;
-	texture = IMG_LoadTexture(Application::Instance()->get_render(),
+bool Texture::load(std::string id, std::string file){
+	m_id = id;
+	m_file = file;
+	std::string file_path = "assets/images/" + m_file;
+	m_texture = IMG_LoadTexture(Application::Instance()->get_render(),
 		file_path.c_str());
-	if(texture == nullptr) {
-		std::cout << IMG_GetError() << std::endl;
+	m_texture_box.x = 0;
+	m_texture_box.y = 0;
+	m_texture_box.w = 0;
+	m_texture_box.y = 0;
+	if(m_texture == nullptr) {
+		std::cout << "Texture loading error! Error message: " << IMG_GetError() << std::endl;
+		return false;
 	} else {
-		std::cout << "Texture loaded. Size: " 
-		<< get_width() << " x " << get_heigth() 
+		SDL_QueryTexture(m_texture, NULL, NULL, &m_texture_box.w, &m_texture_box.h);
+		std::cout << "Texture loaded | "
+		<< "Id: " << get_id()
+		<< " | Size: " << get_width() << " x " << get_heigth() 
 		<< " | File: " << file_path << std::endl;
+		return true;
 	}
-	texture_box.x = 0;
-	texture_box.y = 0;
-	texture_box.w = 0;
-	texture_box.y = 0;
-	SDL_QueryTexture(texture, NULL, NULL, &texture_box.w, &texture_box.h);
+	
 }
 
 void Texture::render(void) {
-	SDL_RenderCopy(Application::Instance()->get_render(), texture, NULL, &texture_box);
+	SDL_RenderCopy(Application::Instance()->get_render(), m_texture, NULL, &m_texture_box);
 }

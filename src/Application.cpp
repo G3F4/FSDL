@@ -19,39 +19,59 @@ void Application::pause(Uint32 ms) {
 }
 
 void Application::start(void){
-    Application();
+    if (!instance_flag){
+        instance = new Application();
+        instance_flag = true;
+    }
+}
+
+void Application::stop(void) {
+    std::cout << "Application stopped." << std::endl;
+    m_running = false;
+    this->~Application();
+}
+
+void Application::render(void) {
+    if (m_running) {
+        TextureStash::Instance()->render_all();
+    }
 }
 
 Application::~Application(void){
-    render = 0;
-    window = 0;
-    this->instance_flag = false;
+    m_render = 0;
+    m_window = 0;
+    instance_flag = false;
+    instance = 0;
+    SDL_Quit();
 }
 
 Application::Application(std::string title, Uint32 x_position, Uint32 y_position, Uint32 width, Uint32 heigth, Uint32 flags):
-        window(nullptr),
-        title(title),
-        x_position(x_position),
-        y_position(y_position),
-        width(width),
-        heigth(heigth),
-        flags(SDL_WINDOW_SHOWN)
+        m_window(nullptr),
+        m_title(title),
+        m_x_position(x_position),
+        m_y_position(y_position),
+        m_width(width),
+        m_heigth(heigth),
+        m_flags(flags)
 {
-    this->window_box.x = x_position;
-    this->window_box.y = y_position;
-    this->window_box.w = width;
-    this->window_box.h = heigth;
+    SDL_Init(SDL_INIT_EVERYTHING);
+    std::cout << "SDL was initialized" << std::endl;
+    m_window_box.x = x_position;
+    m_window_box.y = y_position;
+    m_window_box.w = width;
+    m_window_box.h = heigth;
 
-    window = SDL_CreateWindow(title.c_str(),
-                                x_position,
-                                y_position,
-                                width,
-                                heigth,
-                                flags);
+    m_window = SDL_CreateWindow(m_title.c_str(),
+                                m_x_position,
+                                m_y_position,
+                                m_width,
+                                m_heigth,
+                                m_flags);
     create_render();
-    this->set_render_color(123,123,123);
-    SDL_RenderClear(render);
-    SDL_RenderPresent(render);
+    set_render_color(123,123,123);
+    SDL_RenderClear(m_render);
+    SDL_RenderPresent(m_render);
+    m_running = true;
     std::cout << "Window was created!" << std::endl;
 }
 
@@ -68,69 +88,70 @@ Application::Application(std::string title, Uint32 x_position, Uint32 y_position
 // {}
 
 void Application::update_window_size(void){
-    SDL_SetWindowSize(this->window, this->width, this->heigth);
+    SDL_SetWindowSize(m_window, m_width, m_heigth);
 }
 
 void Application::set_width(int w){
-    this->width = this->window_box.w = w;
-    this->update_window_size();
+    m_width = m_window_box.w = w;
+    update_window_size();
 }
 
 void Application::set_heigth(int h){
-    this->heigth = this->window_box.h = h;
-    this->update_window_size();
+    m_heigth = m_window_box.h = h;
+    update_window_size();
 }
 
 void Application::set_window_size(int w, int h){
-    this->width = this->window_box.w = w;
-    this->heigth = this->window_box.h = h;
-    this->update_window_size();
+    m_width = m_window_box.w = w;
+    m_heigth = m_window_box.h = h;
+    update_window_size();
 }
 
 int Application::get_width(void){
-    return this->width;
+    return m_width;
 }
 
 int Application::get_heigth(void){
-    return this->heigth;
+    return m_heigth;
 }
 
 void Application::update_window_position(void){
-    SDL_SetWindowPosition(this->window, this->x_position, this->y_position);
+    SDL_SetWindowPosition(m_window, m_x_position, m_y_position);
 }
 
 void Application::set_x_position(int x){
-    this->x_position = this->window_box.x = x;
-    this->update_window_position();
+    m_x_position = m_window_box.x = x;
+    update_window_position();
 }
 
 void Application::set_y_position(int y){
-    this->y_position = this->window_box.y = y;
-    this->update_window_position();
+    m_y_position = m_window_box.y = y;
+    update_window_position();
 }
 
 void Application::set_window_position(int x, int y){
-    this->x_position = this->window_box.x = x;
-    this->y_position = this->window_box.y = y;
-    this->update_window_position();
+    m_x_position = m_window_box.x = x;
+    m_y_position = m_window_box.y = y;
+    update_window_position();
 }
 
 void Application::create_render(Uint32 flags, int index){
-    render = SDL_CreateRenderer(this->window, index, flags);
-    if(render == NULL) {
+    m_render = SDL_CreateRenderer(m_window, index, flags);
+    if(m_render == NULL) {
         std::cout << SDL_GetError() << std::endl;
     }
 }
 
 void Application::set_render_color(int R, int G, int B, int alpha){
-    SDL_SetRenderDrawColor(this->render, R, G, B, alpha);
+    SDL_SetRenderDrawColor(m_render, R, G, B, alpha);
 }
 
 void Application::destroy(void){
-    SDL_DestroyWindow(this->window);
-    this->window = nullptr;
+    SDL_DestroyRenderer(m_render);
+    SDL_DestroyWindow(m_window);
+    m_window = nullptr;
 }
 
 void Application::refresh(void) {
-    SDL_RenderPresent(render);
+    SDL_RenderPresent(m_render);
 }

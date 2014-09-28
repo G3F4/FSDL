@@ -21,15 +21,15 @@ class Texture{
 public:
 	Texture(void);
 	void render(void);
-	void load(std::string id, std::string file);
-	int get_width(void) { return texture_box.w; }
-	int get_heigth(void) { return texture_box.h; }
-	std::string get_id(void) { return id; }
+	bool load(std::string id, std::string file);
+	int get_width(void) { return m_texture_box.w; }
+	int get_heigth(void) { return m_texture_box.h; }
+	std::string get_id(void) { return m_id; }
 private:
-	SDL_Texture* texture;
-	SDL_Rect texture_box;
-	std::string file;
-	std::string id;
+	SDL_Texture* m_texture;
+	SDL_Rect m_texture_box;
+	std::string m_file;
+	std::string m_id;
 };
 
 #endif /* TEXTURE_H_DEFINED */

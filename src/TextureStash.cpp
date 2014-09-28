@@ -27,17 +27,22 @@ bool TextureStash::add(std::string id, std::string file_path) {
 		return false;
 	} else {
 		Texture* tmp = new Texture();
-		tmp->load(id, file_path);
-		textures_set[id] = tmp;
-		return true;
+		if ( tmp->load(id, file_path) ) {
+			textures_set[id] = tmp;
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 }
 
 void TextureStash::render_all(void) {
-	std::cout << "Rendering all textures. Count: " << textures_set.size() << std::endl;
-	for (auto texture : textures_set) {
-		// textures_set.second->render();
-		textures_set[texture.first]->render();
-		std::cout << texture.first << " rendered." << std::endl;
+	if (textures_set.size() > 0) {
+		for (auto texture : textures_set) {
+			textures_set[texture.first]->render();
+		}
+	} else {
+		std::cout << "No textures to render!";
 	}
 }
