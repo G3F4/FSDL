@@ -1,6 +1,7 @@
 #ifndef MYAPP_DEFINED
 #define MYAPP_DEFINED
 
+#include "FSDL.hpp"
 
 
 // Shuts up the compiler about unused parameters.

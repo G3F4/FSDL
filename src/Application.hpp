@@ -2,7 +2,9 @@
 #define APPLICATION_H_DEFINED
 
 #include <string>
-#include "MyApp.hpp"
+#include <memory>
+#include <mutex>
+
 #include "Events.hpp"
 #include "TextureStash.hpp"
 
@@ -10,7 +12,7 @@
 class Application
 {
 public:              
-    static Application* Instance(void);              // Instance method used to acces the class
+    static Application& Instance(void);              // Instance method used to acces the class
                                                 // defaults:
 	Application(std::string title = "SDL App",       // window title
             Uint32 x_position = 0,              // x position of left upper corner of the window
@@ -79,8 +81,8 @@ private:
     Uint32 m_flags;                               // variable to store SDL_ApplicationFlags
     Uint32 m_render_flags;                        // variable to store SDL_RendererFlags
     SDL_Rect m_window_box;                        // SDL_Rect structure holding window dimensions and position
-    static Application* instance;                    // pointer to instance, access point
-    static bool instance_flag;                  // instance flag
+    static std::unique_ptr<Application> m_instance;
+    static std::once_flag m_once_flag;
 };
 
 #endif //APPLICATION_H_DEFINED

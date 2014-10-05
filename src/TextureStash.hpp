@@ -5,22 +5,24 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <memory>
+#include <mutex>
 
 class Texture;
 
 class TextureStash {
 public:
-	static TextureStash* Instance(void);
+	static TextureStash& Instance(void);
 	bool add(std::string id, std::string file_path);
 	std::string get_folder(void) { return folder; }
 	void set_folder(std::string new_folder) { folder = new_folder; }
 	void render_all(void);
-private:
-	TextureStash(void);
 	~TextureStash(void);
+private:
+	static std::unique_ptr<TextureStash> m_instance;
+	static std::once_flag m_once_flag;
+	TextureStash(void);
 	std::string folder;
-	static TextureStash* instance;
-	static bool instance_flag;
 	std::map<std::string, Texture*> textures_set;
 };
 

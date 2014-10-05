@@ -1,47 +1,38 @@
 #include "Application.hpp"
 #include <iostream>
 
-Application* Application::instance = 0;
-bool Application::instance_flag = false;
+std::unique_ptr<Application> Application::m_instance;
+std::once_flag Application::m_once_flag;
 
-Application* Application::Instance(void){
-    if (!instance_flag){
-        instance = new Application();
-        instance_flag = true;
-        return instance;
-    }
-    else {
-        return instance;
-    }
+Application& Application::Instance() {
+    std::call_once(m_once_flag, [] {
+        m_instance.reset(new Application);
+    });
+    return *m_instance.get();
 }
+
 void Application::pause(Uint32 ms) {
     SDL_Delay(ms);
 }
 
 void Application::start(void){
-    if (!instance_flag){
-        instance = new Application();
-        instance_flag = true;
-    }
+    Instance();
 }
 
 void Application::stop(void) {
     std::cout << "Application stopped." << std::endl;
     m_running = false;
-    this->~Application();
 }
 
 void Application::render(void) {
     if (m_running) {
-        TextureStash::Instance()->render_all();
+        TextureStash::Instance().render_all();
     }
 }
 
 Application::~Application(void){
     m_render = 0;
     m_window = 0;
-    instance_flag = false;
-    instance = 0;
     SDL_Quit();
 }
 
@@ -75,17 +66,6 @@ Application::Application(std::string title, Uint32 x_position, Uint32 y_position
     std::cout << "Window was created!" << std::endl;
 }
 
-// Application::Application(void):
-//     window(0),
-//     render(0),
-//     x_position(0),
-//     y_position(0),
-//     width(800),
-//     heigth(600),
-//     title(""),
-//     flags(0),
-//     render_flags(0)
-// {}
 
 void Application::update_window_size(void){
     SDL_SetWindowSize(m_window, m_width, m_heigth);

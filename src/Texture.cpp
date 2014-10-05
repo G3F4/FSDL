@@ -11,7 +11,7 @@ bool Texture::load(std::string id, std::string file){
 	m_id = id;
 	m_file = file;
 	std::string file_path = "assets/images/" + m_file;
-	m_texture = IMG_LoadTexture(Application::Instance()->get_render(),
+	m_texture = IMG_LoadTexture(Application::Instance().get_render(),
 		file_path.c_str());
 	m_texture_box.x = 0;
 	m_texture_box.y = 0;
@@ -32,5 +32,5 @@ bool Texture::load(std::string id, std::string file){
 }
 
 void Texture::render(void) {
-	SDL_RenderCopy(Application::Instance()->get_render(), m_texture, NULL, &m_texture_box);
+	SDL_RenderCopy(Application::Instance().get_render(), m_texture, NULL, &m_texture_box);
 }

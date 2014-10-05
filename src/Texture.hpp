@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include "Application.hpp"
+#include "API.hpp"
 
 
 // Shuts up the compiler about unused parameters.

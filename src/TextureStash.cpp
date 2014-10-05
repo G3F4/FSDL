@@ -1,18 +1,17 @@
 #include "TextureStash.hpp"
 
-TextureStash* TextureStash::instance = 0;
-bool TextureStash::instance_flag = false;
+std::unique_ptr<TextureStash> TextureStash::m_instance;
+std::once_flag TextureStash::m_once_flag;
 
+TextureStash& TextureStash::Instance(void) {
+	std::call_once(m_once_flag, [] {
+		m_instance.reset(new TextureStash);
+	});
+	return *m_instance.get();
+}
 
-TextureStash* TextureStash::Instance(void) {
-	if (!instance_flag){
-        instance = new TextureStash();
-        instance_flag = true;
-        return instance;
-    }
-    else {
-        return instance;
-    }
+TextureStash::~TextureStash(void) {
+	
 }
 
 TextureStash::TextureStash(void) {

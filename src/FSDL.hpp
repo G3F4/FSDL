@@ -1,5 +1,5 @@
-#ifndef API_H_DEFINED
-#define API_H_DEFINED
+#ifndef FSDL_H_DEFINED
+#define FSDL_H_DEFINED
 
 #include <SDL2/SDL.h>            // SDL2
 #include <SDL2/SDL_video.h>      // SDL2
@@ -16,5 +16,4 @@
 #include <iostream>
 #include <string>
 
-
-#endif /* API_H_DEFINED */
+#endif /* FSDL_H_DEFINED */
