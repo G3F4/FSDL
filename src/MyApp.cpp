@@ -7,6 +7,8 @@ void MyApp::start()
 {
 	App.start();
 	TextureStash::Instance().add("ele", "ele.png");
+    TextureStash::Instance().add("no", "no-img.png");
+    TextureStash::Instance().add("test", "test.jpg");
 	while(App.is_running()) {
 		App.refresh();
 		Events.handle();
@@ -15,6 +17,7 @@ void MyApp::start()
 		Events.key_pressed("w");
 		App.render();
 	}
+    std::cout << SDL_GetError() << std::endl;
 }
 void MyApp::exit()
 {

@@ -1,5 +1,4 @@
 #include "Texture.hpp"
-#include <iostream>
 
 Texture::Texture(void){
 	m_texture = nullptr;
