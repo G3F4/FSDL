@@ -77,13 +77,13 @@ void Application::set_width(int w){
 }
 
 void Application::set_heigth(int h){
-    m_heigth = m_window_box.h = h;
+    m_heigth = (Uint32) m_window_box.h = h;
     update_window_size();
 }
 
 void Application::set_window_size(int w, int h){
-    m_width = m_window_box.w = w;
-    m_heigth = m_window_box.h = h;
+    m_width = (Uint32) m_window_box.w = w;
+    m_heigth = (Uint32) m_window_box.h = h;
     update_window_size();
 }
 
@@ -105,13 +105,13 @@ void Application::set_x_position(int x){
 }
 
 void Application::set_y_position(int y){
-    m_y_position = m_window_box.y = y;
+    m_y_position = (Uint32) m_window_box.y = y;
     update_window_position();
 }
 
 void Application::set_window_position(int x, int y){
-    m_x_position = m_window_box.x = x;
-    m_y_position = m_window_box.y = y;
+    m_x_position = (Uint32) m_window_box.x = x;
+    m_y_position = (Uint32) m_window_box.y = y;
     update_window_position();
 }
 
@@ -123,7 +123,7 @@ void Application::create_render(Uint32 flags, int index){
 }
 
 void Application::set_render_color(int R, int G, int B, int alpha){
-    SDL_SetRenderDrawColor(m_render, R, G, B, alpha);
+    SDL_SetRenderDrawColor(m_render, (Uint8) R, (Uint8) G, (Uint8) B, (Uint8) alpha);
 }
 
 void Application::destroy(void){

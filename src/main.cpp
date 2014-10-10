@@ -1,10 +1,8 @@
 #include "MyApp.hpp"
-//#include "Application.hpp"
-
-#include <exception>
 
 int main()
 {
     MyApp::start();
+    return 0;
 }
 

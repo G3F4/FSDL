@@ -40,7 +40,7 @@ void Events::reset_key_state(void) {
 	// if so we change the state of proper key in m_keyboard_state to false
 	for (auto key : m_keyboard_state) {
 		if (m_keys_states[SDL_GetScancodeFromName(key.first.c_str())] == 0
-			&& key.second == true) {
+			&& key.second) {
 			std::cout << "Key '" << key.first <<  "' was released." << std::endl;
 			m_keyboard_state[key.first] = false;
 		}
@@ -49,19 +49,19 @@ void Events::reset_key_state(void) {
 
 bool Events::mouse_clicked(std::string button) {
 	if (m_mouse_buttons_states != 0) {
-		if (m_mouse_state[0] == false && (m_mouse_buttons_states == 1 && (button == "left" || button == "LEFT"))) {
+		if (!m_mouse_state[0] && (m_mouse_buttons_states == 1 && (button == "left" || button == "LEFT"))) {
 			std::cout << "left mouse button clicked" << std::endl;
 			m_mouse_state[0] = true;
 			return true;
-		} else if (m_mouse_state[1] == false && (m_mouse_buttons_states == 4 && (button == "right" || button == "RIGHT"))) {
+		} else if (!m_mouse_state[1] && (m_mouse_buttons_states == 4 && (button == "right" || button == "RIGHT"))) {
 			std::cout << "right mouse button clicked" << std::endl;
 			m_mouse_state[1] = true;
 			return true;
-		} else if (m_mouse_state[2] == false && (m_mouse_buttons_states == 2 && (button == "middle" || button == "MIDDLE"))) {
+		} else if (!m_mouse_state[2] && (m_mouse_buttons_states == 2 && (button == "middle" || button == "MIDDLE"))) {
 			std::cout << "middle mouse button clicked" << std::endl;
 			m_mouse_state[2] = true;
 			return true;
-		} else if (m_mouse_state[3] == false && (m_mouse_buttons_states == 5 && (button == "both" || button == "BOTH"))) {
+		} else if (!m_mouse_state[3] && (m_mouse_buttons_states == 5 && (button == "both" || button == "BOTH"))) {
 			std::cout << "both mouse buttons clicked" << std::endl;
 			m_mouse_state[3] = true;
 			return true;

@@ -42,8 +42,8 @@ public:
     void set_x_position(int x);                 // set x position of the window
     void set_y_position(int y);                 // set y position of the window
     void set_window_position(int x, int y);     // set window position
-    int get_x_position(void);                   // get window x position
-    int get_y_position(void);                   // get window y position
+    int get_x_position(void) { return m_x_position; }                   // get window x position
+    int get_y_position(void) { return m_y_position; }                   // get window y position
     void set_title(std::string title);          // set the title of the window
     std::string get_title(void);                // get the title of the window
     void hide(void);                            // hide window
@@ -74,9 +74,9 @@ private:
     SDL_Renderer* m_render;                        // Application Renderer
     SDL_Window* m_window;                         // SDL_Application pointer to window structure
     std::string m_title;                          // literal representing window title
-    Uint32 m_x_position;                          // variable to store x position of the window
+    int m_x_position;                          // variable to store x position of the window
     Uint32 m_y_position;                          // variable to store y position of the window
-    Uint32 m_width;                               // variable to store width of the window
+    int m_width;                               // variable to store width of the window
     Uint32 m_heigth;                              // variable to store heigth of the wondow
     Uint32 m_flags;                               // variable to store SDL_ApplicationFlags
     Uint32 m_render_flags;                        // variable to store SDL_RendererFlags
