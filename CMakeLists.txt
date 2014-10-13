@@ -4,18 +4,18 @@ project(FSDL)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-    src/Application.cpp
-    src/Application.hpp
-    src/Events.cpp
-    src/Events.hpp
+    src/singeltons/Application.cpp
+    src/singeltons/Application.hpp
     src/FSDL.hpp
     src/main.cpp
     src/MyApp.cpp
     src/MyApp.hpp
-    src/Texture.cpp
-    src/Texture.hpp
-    src/TextureStash.cpp
-    src/TextureStash.hpp
+    src/singeltons/Events.cpp
+    src/singeltons/Events.hpp
+    src/entities/Texture.cpp
+    src/entities/Texture.hpp
+    src/singeltons/TextureStash.cpp
+    src/singeltons/TextureStash.hpp
     Makefile
     README.md)
 

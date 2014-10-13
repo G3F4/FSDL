@@ -1,5 +1,4 @@
 #include "Application.hpp"
-#include <iostream>
 
 std::unique_ptr<Application> Application::m_instance;
 std::once_flag Application::m_once_flag;
@@ -31,6 +30,7 @@ void Application::render(void) {
 }
 
 Application::~Application(void){
+    Application::destroy();
     m_render = 0;
     m_window = 0;
     SDL_Quit();
@@ -76,14 +76,14 @@ void Application::set_width(int w){
     update_window_size();
 }
 
-void Application::set_heigth(int h){
-    m_heigth = (Uint32) m_window_box.h = h;
+void Application::set_height(int h){
+    m_heigth = m_window_box.h = h;
     update_window_size();
 }
 
 void Application::set_window_size(int w, int h){
-    m_width = (Uint32) m_window_box.w = w;
-    m_heigth = (Uint32) m_window_box.h = h;
+    m_width = m_window_box.w = w;
+    m_heigth = m_window_box.h = h;
     update_window_size();
 }
 
@@ -91,7 +91,7 @@ int Application::get_width(void){
     return m_width;
 }
 
-int Application::get_heigth(void){
+int Application::get_height(void){
     return m_heigth;
 }
 
@@ -105,13 +105,13 @@ void Application::set_x_position(int x){
 }
 
 void Application::set_y_position(int y){
-    m_y_position = (Uint32) m_window_box.y = y;
+    m_y_position = m_window_box.y = y;
     update_window_position();
 }
 
 void Application::set_window_position(int x, int y){
-    m_x_position = (Uint32) m_window_box.x = x;
-    m_y_position = (Uint32) m_window_box.y = y;
+    m_x_position = m_window_box.x = x;
+    m_y_position = m_window_box.y = y;
     update_window_position();
 }
 
@@ -133,5 +133,17 @@ void Application::destroy(void){
 }
 
 void Application::refresh(void) {
+    SDL_RenderClear(m_render);
+    Application::render();
     SDL_RenderPresent(m_render);
+}
+
+void Application::set_title(std::string title) {
+    SDL_SetWindowTitle(m_window, title.c_str());
+}
+
+std::string Application::get_title() {
+//    std::string tmp = SDL_GetWindowTitle(m_window);
+//    return tmp;
+    return SDL_GetWindowTitle(m_window);
 }

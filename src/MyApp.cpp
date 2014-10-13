@@ -12,14 +12,13 @@ void MyApp::start()
 	while(App.is_running()) {
 		App.refresh();
 		Events.handle();
-		Events.mouse_clicked("left");
-		Events.key_pressed("Left");
-		Events.key_pressed("w");
 		App.render();
+        if(Events.key_pressed("Escape")){
+            App.stop();
+        }
 	}
-    std::cout << SDL_GetError() << std::endl;
 }
-void MyApp::exit()
+void MyApp::stop()
 {
 	App.stop();
 }

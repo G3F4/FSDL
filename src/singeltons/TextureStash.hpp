@@ -1,12 +1,13 @@
 #ifndef TEXTURESTASH_H_DEFINED
 #define TEXTURESTASH_H_DEFINED
 
-#include "Texture.hpp"
 #include <string>
 #include <iostream>
 #include <map>
 #include <memory>
 #include <mutex>
+
+#include "../entities/Texture.hpp"
 
 class Texture;
 

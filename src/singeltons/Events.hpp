@@ -9,7 +9,6 @@
 
 #include "Application.hpp"
 
-
 class Events {
 public:
 	static Events& Instance(void);

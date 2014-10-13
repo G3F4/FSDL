@@ -11,7 +11,7 @@ Events& Events::Instance() {
 }
 
 Events::Events(void) {
-
+    std::cout << "Events singelton instantiated." << std::endl;
 }
 
 Events::~Events(void) {
