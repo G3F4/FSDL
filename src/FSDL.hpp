@@ -1,3 +1,6 @@
+// This it's starting point of framework.
+// After including gives access to whole framework.
+
 #ifndef FSDL_H_DEFINED
 #define FSDL_H_DEFINED
 
@@ -13,6 +16,5 @@
 
 #include <iostream>
 #include <string>
-
 
 #endif /* FSDL_H_DEFINED */

@@ -21,7 +21,8 @@ public:
     virtual void set_height(int heigth) = 0;
     virtual void set_x_position(int x) = 0;
     virtual void set_y_position(int y) = 0;
-    virtual bool is_abstract(void) { return true; }
+protected:
+    virtual ~Object() {}
 };
 
 #endif

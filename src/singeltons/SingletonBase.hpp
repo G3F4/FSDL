@@ -1,0 +1,9 @@
+#ifndef SINGLETONBASE_HPP_DEFINE
+#define SINGLETONBASE_HPP_DEFINE
+
+
+class SingletonBase {
+
+};
+
+#endif /* SINGLETONBASE_HPP_DEFINE */

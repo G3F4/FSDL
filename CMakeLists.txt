@@ -14,6 +14,8 @@ set(SOURCE_FILES
     src/singeltons/Events.hpp
     src/entities/Texture.cpp
     src/entities/Texture.hpp
+    src/entities/TextObject.cpp
+    src/entities/TextObject.hpp
     src/singeltons/TextureStash.cpp
     src/singeltons/TextureStash.hpp
     Makefile
