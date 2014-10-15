@@ -3,6 +3,7 @@
 static Application& App = Application::Instance();
 static Events& Events = Events::Instance();
 
+
 void MyApp::start()
 {
 	App.start();

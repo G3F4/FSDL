@@ -1,21 +1,17 @@
 #include "Events.hpp"
 
-std::unique_ptr<Events> Events::m_instance;
-std::once_flag Events::m_once_flag;
-
-Events& Events::Instance() {
-	std::call_once(m_once_flag, [] {
-		m_instance.reset(new Events);
-	});
-	return *m_instance.get();
-}
+//std::unique_ptr<Events> Events::m_instance;
+//std::once_flag Events::m_once_flag;
+//
+//Events& Events::Instance() {
+//	std::call_once(m_once_flag, [] {
+//		m_instance.reset(new Events);
+//	});
+//	return *m_instance.get();
+//}
 
 Events::Events(void) {
     std::cout << "Events singelton instantiated." << std::endl;
-}
-
-Events::~Events(void) {
-
 }
 
 bool Events::key_pressed(std::string key) {

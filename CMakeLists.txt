@@ -4,20 +4,25 @@ project(FSDL)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
+    src/singeltons/SingletonBase.cpp
+    src/singeltons/SingletonBase.hpp
     src/singeltons/Application.cpp
     src/singeltons/Application.hpp
-    src/FSDL.hpp
-    src/main.cpp
-    src/MyApp.cpp
-    src/MyApp.hpp
+    src/singeltons/TextureStash.cpp
+    src/singeltons/TextureStash.hpp
+    src/singeltons/TextStash.cpp
+    src/singeltons/TextStash.hpp
     src/singeltons/Events.cpp
     src/singeltons/Events.hpp
     src/entities/Texture.cpp
     src/entities/Texture.hpp
     src/entities/TextObject.cpp
     src/entities/TextObject.hpp
-    src/singeltons/TextureStash.cpp
-    src/singeltons/TextureStash.hpp
+    src/MyApp.cpp
+    src/MyApp.hpp
+    src/FSDL.hpp
+    src/main.cpp
+
     Makefile
     README.md)
 
