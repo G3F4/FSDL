@@ -18,7 +18,7 @@ public:
 
 	Application(std::string title = "SDL App",       // window title
             Uint32 x_position = 0,              // x position of left upper corner of the window
-            Uint32 y_position = 1000,              // y position of left upper corner of the window
+            Uint32 y_position = 0,              // y position of left upper corner of the window
             Uint32 width = 640,                 // width of the window
             Uint32 heigth = 480,                // heigth of the window
             Uint32 flags = SDL_WINDOW_SHOWN);   // SDL_ApplicationFlags, default window is simply shown

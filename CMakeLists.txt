@@ -6,6 +6,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(SOURCE_FILES
     src/singeltons/Application.cpp
     src/singeltons/Application.hpp
+    src/singeltons/TextureStash.cpp
+    src/singeltons/TextureStash.hpp
+    src/singeltons/Events.cpp
+    src/singeltons/Events.hpp
+    src/singeltons/TextStash.cpp
+    src/singeltons/TextStash.hpp
     src/FSDL.hpp
     src/main.cpp
     src/MyApp.cpp
@@ -16,8 +22,7 @@ set(SOURCE_FILES
     src/entities/Texture.hpp
     src/entities/TextObject.cpp
     src/entities/TextObject.hpp
-    src/singeltons/TextureStash.cpp
-    src/singeltons/TextureStash.hpp
+
     Makefile
     README.md)
 

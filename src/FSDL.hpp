@@ -13,6 +13,7 @@
 #include "singeltons/Application.hpp"
 #include "singeltons/Events.hpp"
 #include "singeltons/TextureStash.hpp"
+#include "singeltons/TextStash.hpp"
 
 #include <iostream>
 #include <string>

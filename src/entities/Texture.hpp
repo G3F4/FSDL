@@ -8,27 +8,18 @@
 #include <iostream>
 #include <string>
 
-#include "abstract/Object.hpp"
+#include "abstract/BaseObject.hpp"
 #include "../singeltons/Application.hpp"
 
 
-// Shuts up the compiler about unused parameters.
-#define UNUSED(x) ((void)(x))
-
-class Texture: public Object {
+class Texture: public BaseObject {
 public:
 	Texture(void);
-	void render(void);
-	bool load(std::string id, std::string file);
-	int get_width(void) { return m_texture_box.w; }
-	int get_height(void) { return m_texture_box.h; }
-    void set_width(int width) {m_texture_box.w = width;}
-    void set_height(int height) {m_texture_box.h = height;}
-    int get_x_position(void) { return m_texture_box.x; }
-    int get_y_position(void) { return m_texture_box.y; }
-    void set_x_position(int x) {m_texture_box.x = x;}
-    void set_y_position(int y) {m_texture_box.y = y;}
-	std::string get_id(void) { return m_id; }
+    virtual void render(void);
+	virtual bool load(std::string id, std::string file);
+
+    virtual std::string get_id(void) { return m_id; }
+
 private:
 	SDL_Texture* m_texture;
 	SDL_Rect m_texture_box;

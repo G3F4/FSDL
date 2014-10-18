@@ -1,14 +1,25 @@
-#ifndef TEXTSTASH_HPP_DEFINE
-#define TEXTSTASH_HPP_DEFINE
+#include "TextStash.hpp"
 
-#include <string>
-#include <iostream>
+std::unique_ptr<TextStash> TextStash::m_instance;
+std::once_flag TextStash::m_once_flag;
 
-#include <SDL2/SDL_ttf.h>
+TextStash& TextStash::Instance() {
+    std::call_once(m_once_flag, [] {
+        m_instance.reset(new TextStash);
+    });
+    return *m_instance.get();
+}
 
+TextStash::TextStash(void) {
+    std::cout << "TextStash singelton instantiated." << std::endl;
+    if(TTF_Init() == -1) {
+        std::cout << TTF_GetError() << std::endl;
+    } else {
+        std::cout << "TTF inited." << std::endl;
+    }
+}
 
-class TextStash {
-
-};
-
-#endif /* TEXTURE_STASH_DEFINE */
+TextStash::~TextStash(void) {
+    std::cout << "TextStash singleton destroyed." << std::endl;
+    TTF_Quit();
+}
