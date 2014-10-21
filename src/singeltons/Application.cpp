@@ -23,20 +23,15 @@ void Application::stop(void) {
     m_running = false;
 }
 
-void Application::render(void) {
-    if (m_running) {
-        TextureStash::Instance().render_all();
-    }
-}
-
 Application::~Application(void){
     Application::destroy();
     m_render = 0;
     m_window = 0;
     SDL_Quit();
+    std::cout << "TextureStash singleton destroyed." << std::endl;
 }
 
-Application::Application(std::string title, Uint32 x_position, Uint32 y_position, Uint32 width, Uint32 heigth, Uint32 flags):
+Application::Application(std::string title, int x_position, int y_position, int width, int heigth, Uint32 flags):
         m_window(nullptr),
         m_title(title),
         m_x_position(x_position),
@@ -59,11 +54,11 @@ Application::Application(std::string title, Uint32 x_position, Uint32 y_position
                                 m_heigth,
                                 m_flags);
     create_render();
-    set_render_color(123,123,123);
+    set_render_color(127,127,127);
     SDL_RenderClear(m_render);
     SDL_RenderPresent(m_render);
     m_running = true;
-    std::cout << "Window was created!" << std::endl;
+    std::cout << "Application singleton instantiated." << std::endl;
 }
 
 
@@ -129,13 +124,14 @@ void Application::set_render_color(int R, int G, int B, int alpha){
 void Application::destroy(void){
     SDL_DestroyRenderer(m_render);
     SDL_DestroyWindow(m_window);
-    m_window = nullptr;
 }
 
 void Application::refresh(void) {
-    SDL_RenderClear(m_render);
-    Application::render();
     SDL_RenderPresent(m_render);
+}
+
+void Application::clear(void) {
+    SDL_RenderClear(m_render);
 }
 
 void Application::set_title(std::string title) {
@@ -143,7 +139,5 @@ void Application::set_title(std::string title) {
 }
 
 std::string Application::get_title() {
-//    std::string tmp = SDL_GetWindowTitle(m_window);
-//    return tmp;
     return SDL_GetWindowTitle(m_window);
 }

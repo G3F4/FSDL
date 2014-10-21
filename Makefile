@@ -13,7 +13,7 @@ INCLUDE = -I"/usr/include/SDL"
 
 # List all files with cpp extension, use maxdepth to limit search 
 # in folder structure
-CXXFILES   = $(shell find src -maxdepth 1 -type f -name '*.cpp')
+CXXFILES   = $(shell find src -maxdepth 10 -type f -name '*.cpp')
 CXXOBJECTS = $(CXXFILES:.cpp=.o)
 
 SOURCES = $(CXXFILES)

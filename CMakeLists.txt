@@ -18,6 +18,9 @@ set(SOURCE_FILES
     src/MyApp.hpp
     src/singeltons/Events.cpp
     src/singeltons/Events.hpp
+    src/entities/abstract/Object.hpp
+    src/entities/abstract/BaseObject.cpp
+    src/entities/abstract/BaseObject.hpp
     src/entities/Texture.cpp
     src/entities/Texture.hpp
     src/entities/TextObject.cpp

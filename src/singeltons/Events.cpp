@@ -12,26 +12,31 @@ Events& Events::Instance() {
 
 Events::Events(void) {
     std::cout << "Events singelton instantiated." << std::endl;
+    m_keys_states = 0;
+    m_mouse_buttons_states = 0;
 }
 
 Events::~Events(void) {
-
+    std::cout << "Events singleton destroyed." << std::endl;
 }
 
 bool Events::key_pressed(std::string key) {
 	//check if any key has pressed state
-	if (m_keys_states != 0) {
-		// check if particular key is pressed
-		if (m_keys_states[SDL_GetScancodeFromName(key.c_str())] == 1 
-			&& m_keyboard_state[key] != true) {
-			std::cout << "Key '" << key << "' was pressed." << std::endl;
-			m_keyboard_state[key] = true;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	return false;
+    if (key.empty()) {
+        return false;
+    } else {
+        if (m_keys_states != 0) {
+            // check if particular key is pressed
+            if (m_keys_states[SDL_GetScancodeFromName(key.c_str())] == 1
+                    && m_keyboard_state[key] != true) {
+                std::cout << "Key '" << key << "' was pressed." << std::endl;
+                m_keyboard_state[key] = true;
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 }
 
 void Events::reset_key_state(void) {

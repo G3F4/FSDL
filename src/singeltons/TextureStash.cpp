@@ -11,12 +11,12 @@ TextureStash& TextureStash::Instance(void) {
 }
 
 TextureStash::~TextureStash(void) {
-	
+    std::cout << "TextureStash singleton destroyed." << std::endl;
 }
 
 TextureStash::TextureStash(void) {
 	folder = "/assets/images/";
-	std::cout << "TextureStash created." << std::endl;
+	std::cout << "TextureStash singleton instantiated." << std::endl;
 }
 
 bool TextureStash::add(std::string id, std::string file_path) {
@@ -32,7 +32,7 @@ bool TextureStash::add(std::string id, std::string file_path) {
 		} else {
 			return false;
 		}
-		
+
 	}
 }
 

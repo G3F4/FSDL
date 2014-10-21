@@ -8,8 +8,8 @@
 #include <iostream>
 #include <string>
 
-#include "abstract/BaseObject.hpp"
 #include "../singeltons/Application.hpp"
+#include "abstract/BaseObject.hpp"
 
 
 class Texture: public BaseObject {

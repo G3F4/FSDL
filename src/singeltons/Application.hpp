@@ -4,9 +4,12 @@
 #include <string>
 #include <memory>
 #include <mutex>
+#include <iostream>
 
-#include "Events.hpp"
-#include "TextureStash.hpp"
+#include <SDL2/SDL.h>
+
+//#include "Events.hpp"
+//#include "TextureStash.hpp"
 #include "../entities/abstract/Object.hpp"
 
 
@@ -17,10 +20,10 @@ public:
                                                 // defaults:
 
 	Application(std::string title = "SDL App",       // window title
-            Uint32 x_position = 0,              // x position of left upper corner of the window
-            Uint32 y_position = 0,              // y position of left upper corner of the window
-            Uint32 width = 640,                 // width of the window
-            Uint32 heigth = 480,                // heigth of the window
+            int x_position = 0,              // x position of left upper corner of the window
+            int y_position = 0,              // y position of left upper corner of the window
+            int width = 640,                 // width of the window
+            int heigth = 480,                // heigth of the window
             Uint32 flags = SDL_WINDOW_SHOWN);   // SDL_ApplicationFlags, default window is simply shown
                                                 // some others options: ( can be or'ed with || )
                                                 // SDL_WINDOW_FULLSCREEN - full screen window
@@ -57,8 +60,8 @@ public:
     void start(void);
     void stop(void);
     void pause(Uint32 ms);                      // delay application for given amount of miliseconds
+    void clear(void);
     void refresh(void);
-    void render(void);                          //render all visible textures
     bool is_running(void) { return m_running; }
 private:
 
