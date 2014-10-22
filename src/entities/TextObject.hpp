@@ -27,7 +27,7 @@ public:
     void empty(void) { m_text = ""; }
     void capitalize(void) { std::transform(m_text.begin(), m_text.end(),m_text.begin(), ::toupper); }
     void decapitalize(void) { std::transform(m_text.begin(), m_text.end(),m_text.begin(), ::tolower); }
-    void create(void);
+    bool create(void);
 
 protected:
     ~TextObject() {};

@@ -21,8 +21,6 @@ public:
     virtual std::string get_id(void) { return m_id; }
 
 private:
-	SDL_Texture* m_texture;
-	SDL_Rect m_texture_box;
 	std::string m_file;
 	std::string m_id;
 };

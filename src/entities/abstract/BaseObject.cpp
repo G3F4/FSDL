@@ -18,7 +18,6 @@ BaseObject::~BaseObject() {
 }
 
 void BaseObject::render(void) {
-    std::cout << m_box.x << " " << m_box.y << std::endl;
     if (SDL_RenderCopyEx(
             Application::Instance().get_render(),
             m_texture,

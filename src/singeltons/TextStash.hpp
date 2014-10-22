@@ -24,12 +24,12 @@ class TextStash {
 public:
     static TextStash& Instance(void);
     virtual ~TextStash(void);
-    void write(std::string text, int x = 0, int y = 0);
+    TextObject* write(std::string text, int x = 0, int y = 0);
     void add(std::string id, std::string text);
     void remove(std::string id);
-    void load_font(std::string id, std::string file);
+    void add_font(std::string id, std::string file, int size = 16);
     void remove_font(std::string id);
-    void add_color(std::string id, int R, int G, int B);
+    void add_color(std::string id, Uint8 R, Uint8 G, Uint8 B);
     void remove_color(std::string id);
     void render_all(void);
     TTF_Font* get_font(std::string id);
@@ -42,10 +42,10 @@ private:
     // TextStash& operator=(const TextStash& rhs) {}; TODO
     static std::unique_ptr<TextStash> m_instance;
     static std::once_flag m_once_flag;
-    std::map<std::string, TTF_Font*>m_fonts;
-    std::map<std::string, SDL_Color>m_colors;
-    std::map<std::string, TextObject*>m_texts;
-
+    std::string m_font_folder;
+    std::map<std::string, TTF_Font*> m_fonts;
+    std::map<std::string, SDL_Color> m_colors;
+    std::map<std::string, TextObject*> m_texts;
 };
 
 #endif /* TEXTSTASH_H_DEFINED */
