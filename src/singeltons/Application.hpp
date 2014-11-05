@@ -86,8 +86,8 @@ private:
     int m_flags;                               // variable to store SDL_ApplicationFlags
     Uint32 m_render_flags;                        // variable to store SDL_RendererFlags
     SDL_Rect m_window_box;                        // SDL_Rect structure holding window dimensions and position
-//    static std::unique_ptr<Application> m_instance;
-//    static std::once_flag m_once_flag;
+    static std::unique_ptr<Application> m_instance;
+    static std::once_flag m_once_flag;
 };
 
 #endif //APPLICATION_H_DEFINED

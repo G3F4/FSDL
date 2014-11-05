@@ -1,21 +1,21 @@
 #include "Application.hpp"
 
-//std::unique_ptr<Application> Application::m_instance;
-//std::once_flag Application::m_once_flag;
-//
-//Application& Application::Instance() {
-//    std::call_once(m_once_flag, [] {
-//        m_instance.reset(new Application);
-//    });
-//    return *m_instance.get();
-//}
+std::unique_ptr<Application> Application::m_instance;
+std::once_flag Application::m_once_flag;
+
+Application& Application::Instance() {
+    std::call_once(m_once_flag, [] {
+        m_instance.reset(new Application);
+    });
+    return *m_instance.get();
+}
 
 void Application::pause(Uint32 ms) {
     SDL_Delay(ms);
 }
 
 void Application::start(void){
-    Instance();
+    this->Instance();
 }
 
 void Application::stop(void) {
