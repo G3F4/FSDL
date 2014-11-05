@@ -19,10 +19,10 @@ public:
 	void set_folder(std::string new_folder) { folder = new_folder; }
 	void render_all(void);
 	~TextureStash(void);
+    TextureStash(void);
 private:
-	static std::unique_ptr<TextureStash> m_instance;
-	static std::once_flag m_once_flag;
-	TextureStash(void);
+//	static std::unique_ptr<TextureStash> m_instance;
+//	static std::once_flag m_once_flag;
 	std::string folder;
 	std::map<std::string, Texture*> textures_set;
 };

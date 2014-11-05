@@ -17,10 +17,10 @@ public:
 	bool mouse_clicked(std::string button = "left");
 	bool mouse_released(void);
 	virtual ~Events(void);
+    Events();
 private:
 	void reset_mouse_state(void);
 	void reset_key_state(void);
-	Events();
 	// Events(const Events& src) {};
 	// Events& operator=(const Events& rhs) {};
 	SDL_Event m_event;

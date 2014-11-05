@@ -83,6 +83,24 @@ void Events::handle(void) {
 	while (SDL_PollEvent(&m_event)) {
 		switch (m_event.type) {
 			case SDL_QUIT:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				Application::Instance().stop();
 				break;
 			case SDL_KEYDOWN:

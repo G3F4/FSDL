@@ -14,6 +14,12 @@
 #include "singeltons/Events.hpp"
 #include "singeltons/TextureStash.hpp"
 #include "singeltons/TextStash.hpp"
+#include "singeltons/SingletonBase.hpp"
+
+typedef Singleton<Application> application;
+typedef Singleton<Events> events;
+typedef Singleton<TextureStash> texturestash;
+typedef Singleton<TextStash> textstash;
 
 #include <iostream>
 #include <string>

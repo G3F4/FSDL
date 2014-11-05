@@ -1,14 +1,14 @@
 #include "TextureStash.hpp"
-
-std::unique_ptr<TextureStash> TextureStash::m_instance;
-std::once_flag TextureStash::m_once_flag;
-
-TextureStash& TextureStash::Instance(void) {
-	std::call_once(m_once_flag, [] {
-		m_instance.reset(new TextureStash);
-	});
-	return *m_instance.get();
-}
+//
+//std::unique_ptr<TextureStash> TextureStash::m_instance;
+//std::once_flag TextureStash::m_once_flag;
+//
+//TextureStash& TextureStash::Instance(void) {
+//	std::call_once(m_once_flag, [] {
+//		m_instance.reset(new TextureStash);
+//	});
+//	return *m_instance.get();
+//}
 
 TextureStash::~TextureStash(void) {
     std::cout << "TextureStash singleton destroyed." << std::endl;

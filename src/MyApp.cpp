@@ -1,12 +1,16 @@
 #include "MyApp.hpp"
-// Simplify usage of singleton. Moreover ensuring having access to it from the begining.
-static Application& App = Application::Instance();
-static Events& Events = Events::Instance();
-static TextureStash& TexStash = TextureStash::Instance();
-static TextStash& Texts = TextStash::Instance();
-
 #include "entities/TextObject.hpp"
 
+// Simplify usage of singleton. Moreover ensuring having access to it from the begining.
+//static Application& App = Application::Instance();
+
+//static Events& Events = Events::Instance();
+//static TextureStash& TexStash = TextureStash::Instance();
+//static TextStash& Texts = TextStash::Instance();
+Application& App = application::Instance();
+Events& Events = events::Instance();
+TextureStash& TexStash = texturestash::Instance();
+TextStash& Texts = textstash::Instance();
 void MyApp::start()
 {
 	App.start();
