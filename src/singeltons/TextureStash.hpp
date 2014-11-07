@@ -21,8 +21,8 @@ public:
 	~TextureStash(void);
     TextureStash(void);
 private:
-//	static std::unique_ptr<TextureStash> m_instance;
-//	static std::once_flag m_once_flag;
+	static std::unique_ptr<TextureStash> m_instance;
+	static std::once_flag m_once_flag;
 	std::string folder;
 	std::map<std::string, Texture*> textures_set;
 };

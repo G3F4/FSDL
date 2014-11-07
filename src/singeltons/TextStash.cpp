@@ -1,14 +1,14 @@
 #include "TextStash.hpp"
 
-//std::unique_ptr<TextStash> TextStash::m_instance;
-//std::once_flag TextStash::m_once_flag;
-//
-//TextStash& TextStash::Instance() {
-//    std::call_once(m_once_flag, [] {
-//        m_instance.reset(new TextStash);
-//    });
-//    return *m_instance.get();
-//}
+std::unique_ptr<TextStash> TextStash::m_instance;
+std::once_flag TextStash::m_once_flag;
+
+TextStash& TextStash::Instance() {
+    std::call_once(m_once_flag, [] {
+        m_instance.reset(new TextStash);
+    });
+    return *m_instance.get();
+}
 
 TextStash::TextStash(void) {
     m_font_folder = "assets/fonts/";
